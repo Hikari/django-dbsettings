@@ -68,6 +68,8 @@ def customized_editor(user, settings):
             }
             if setting.choices:
                 field = forms.ChoiceField(choices=setting.choices, **kwargs)
+            elif isinstance(setting, dbsettings.values.TextValue):
+                field = forms.CharField ( widget=forms.widgets.Textarea(), **kwargs )
             else:
                 field = setting.field(**kwargs)
             base_fields['%s__%s__%s' % setting.key] = field
