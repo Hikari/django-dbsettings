@@ -13,8 +13,8 @@ class SettingDict(SortedDict):
     "Sorted dict that has a bit more list-type functionality"
     def insert(self, key, index, value):
         if key not in self.keys():
-            self.keyOrder.insert(index, key)
             self[key] = value
+            self.keyOrder.append(key)
 
     def __iter__(self):
         for k in self.keyOrder:

@@ -11,7 +11,7 @@ except ImportError:
 
 __all__ = ['Value', 'BooleanValue', 'DecimalValue', 'DurationValue',
       'FloatValue', 'IntegerValue', 'PercentValue', 'PositiveIntegerValue',
-      'StringValue']
+      'StringValue', 'TextValue']
 
 class Value(object):
 
@@ -164,3 +164,6 @@ class PositiveIntegerValue(IntegerValue):
 
 class StringValue(Value):
     field = forms.CharField
+
+class TextValue(Value):
+    field = forms.CharField(widget=forms.widgets.Textarea())

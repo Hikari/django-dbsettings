@@ -51,6 +51,7 @@ class SettingsEditor(forms.BaseForm):
 
 def customized_editor(user, settings):
     "Customize the setting editor based on the current user and setting list"
+    import dbsettings
     base_fields = SortedDict()
     for setting in settings:
         perm = '%s.can_edit_%s_settings' % (
@@ -68,6 +69,8 @@ def customized_editor(user, settings):
             }
             if setting.choices:
                 field = forms.ChoiceField(choices=setting.choices, **kwargs)
+            elif isinstance(setting, dbsettings.values.TextValue):
+                field = forms.CharField ( widget=forms.widgets.Textarea(), **kwargs )
             else:
                 field = setting.field(**kwargs)
             base_fields['%s__%s__%s' % setting.key] = field
