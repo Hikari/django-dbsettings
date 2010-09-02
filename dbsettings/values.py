@@ -68,11 +68,11 @@ class Value(object):
 
     def get_db_prep_save(self, value):
         "Returns a value suitable for storage into a CharField"
-        return str(value)
+        return unicode(value)
 
     def to_editor(self, value):
         "Returns a value suitable for display in a form widget"
-        return str(value)
+        return unicode(value)
 
 ###############
 # VALUE TYPES #
